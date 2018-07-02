@@ -1,0 +1,15 @@
+.bg-video {
+    position: absolute;top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;//set a very low z-index so that the heading is visible, which can even be -ve so that we can be sure that it is behind all of the other element
+    opacity: .15;
+    overflow: hidden;//important property
+
+    &__content {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;//similar to backgroun-size: cover, objec fit will it fill the entire parent while maintaing the aspect ratio
+    }
+}

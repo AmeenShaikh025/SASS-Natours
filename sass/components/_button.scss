@@ -1,0 +1,126 @@
+/*button is a componenet*/
+
+
+.btn {
+    &,
+    &:link,
+    &:visited {
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 1.5rem 4rem;
+        display: inline-block;/*currently the element was inline, now it is inline-block */
+    
+        /*since it is inline-block element so it is treated as if it was text
+         so we can set the .text-box text-align property to center */
+    
+         border-radius: 10rem;
+    
+    
+        /* There are 2 types of animations:
+            1. tranistion property ---(easy)
+            2. using methods (@keyframes)
+        */
+    
+        /* Always put transition property on the initial state */
+    
+         transition: all .2s; /* shorthand way */
+    
+         /* so now the the transform on the hover and active buttons will be animated based on the initial state i.e, transition */
+    
+         position: relative; /*reference for btn::after*/
+         font-size: $default-font-size;/*to make it 16 pixel*/
+
+
+         //Change for the <button> element
+         border: none;
+         cursor: pointer;
+    }
+    
+    &:hover {
+        transform: translateY(-3px);/*to go up*/
+        box-shadow: 0 1rem 2rem rgba($color-black,.2);/* box shadow args: x  y  blur color brightness(or)darkness*/
+
+
+        /*when we hover we change ::after to display */
+    
+        &::after {
+            transform: scaleX(1.4) scaleY(1.6);
+            opacity: 0;
+        }
+    }
+    
+    &:active,
+    &:focus {
+        outline: none;
+        transform: translate(-1px);
+        box-shadow: 0 .5rem 1rem rgba($color-black,.2);
+    }
+    
+    &--white {
+        background-color: $color-white;
+        color: $color-grey-dark;
+
+        &::after {
+            background-color: $color-white;
+        }
+    }
+
+    &--green {
+        background-color: $color-primary;
+        color: $color-white;
+
+        &::after {
+            background-color: $color-primary;
+        }
+    }
+    
+    
+    /*010*/
+    
+    &::after { /* ::after psuedo element is basically treated as a child of the &*/
+        /*the trick is to add an element that looks exactly like the button element we have but,we put it behind the button  */
+        content: '';
+        display: inline-block;/* since the button is inline block it is also inline block */
+        height: 100%;
+        width: 100%;
+        border-radius: 10rem;
+        position: absolute;/*To hide the element behind the button*/
+        top: 0;
+        left: 0;
+        z-index: -1;/*behind*/
+        transition: all .4s;/* Always put transition property on the initial state */
+    }
+    
+    
+    
+    &--animated {
+        animation: moveInButton .5s ease-out .95s;
+        animation-fill-mode: backwards;/*it will automatically apply the styles of 0% before the animation starts */
+    }
+
+}
+
+.btn-text {
+    &:link,
+    &:visited {
+        font-size: $default-font-size;
+        color: $color-primary;
+        display: inline-block;
+        text-decoration: none;
+        border-bottom: 1px solid $color-primary;
+        padding: .3rem;
+        transition: all .2s;
+    }
+
+    &:hover {
+        background-color: $color-primary;
+        color: $color-white;
+        box-shadow: 0 1rem 2rem rgba($color-black, .15);
+        transform: translateY(-2px);
+    }
+
+    &:active {
+        box-shadow: 0 .5rem 1rem rgba($color-black, .15);
+        transform: translateY(0);
+    }
+}
